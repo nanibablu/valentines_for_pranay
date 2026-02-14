@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valentine Week ❤️</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body{
+ margin:0;
+ font-family:'Poppins',sans-serif;
+ text-align:center;
+ overflow-x:hidden;
+
+ background-image:url("index_bg.jpg");
+ background-size:cover;
+ background-position:center;
+}
+
+/* PREMIUM FLOATING EMOJIS */
+.floatingEmoji{
+ position:fixed;
+ pointer-events:none;
+ animation:floatMove linear forwards;
+ filter:drop-shadow(0 0 8px rgba(255,105,180,0.7));
+ opacity:0;
+}
+
+@keyframes floatMove{
+ 0%{
+   transform:translateY(0) translateX(0) scale(0.6);
+   opacity:0;
+ }
+ 20%{opacity:1;}
+ 80%{opacity:1;}
+ 100%{
+   transform:translateY(-120px) translateX(40px) scale(1.1);
+   opacity:0;
+ }
+}
+
+/* layout */
+.center{
+ height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+}
+
+.box{
+ background:rgba(255,255,255,0.92);
+ padding:40px;
+ border-radius:20px;
+ box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* titles */
+h1{
+ font-family:'Great Vibes',cursive;
+ font-size:52px;
+ color:#ff2e63;
+}
+
+h2{
+ font-family:'Dancing Script',cursive;
+ font-size:28px;
+ color:#b3003c;
+}
+
+/* input */
+input{
+ padding:12px;
+ border-radius:10px;
+ border:1px solid #ffb7c5;
+ margin-top:10px;
+ width:250px;
+ font-size:16px;
+ font-family:'Poppins';
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake{
+ 0%{transform:translateX(0);}
+ 25%{transform:translateX(-6px);}
+ 50%{transform:translateX(6px);}
+ 75%{transform:translateX(-6px);}
+ 100%{transform:translateX(0);}
+}
+
+.shake{
+ animation:shake 0.4s;
+ border-color:#ff4d4d !important;
+}
+
+/* buttons */
+button{
+ margin-top:15px;
+ padding:12px 25px;
+ border-radius:25px;
+ border:none;
+ background:#ff4d6d;
+ color:white;
+ font-size:18px;
+ cursor:pointer;
+ transition:0.3s;
+ font-family:'Poppins';
+}
+
+#welcomeScreen,
+#valentineQuestion,
+#mainContent{
+ display:none;
+}
+
+#noBtn{background:gray;}
+
+#cuteMsg{
+ color:#ad3378;
+ margin-top:10px;
+ font-size:20px;
+ font-family:'Segoe Print',cursive;
+}
+
+/* YES ABOVE NO */
+.btnColumn{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:12px;
+ margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="passwordModal" class="center">
+ <div class="box">
+   <h2 id="typingText"></h2>
+   <input type="password" id="passwordInput" placeholder="Our special word...">
+   <br>
+   <button id="submitPassword">Enter</button>
+ </div>
+</div>
+
+<!-- WELCOME -->
+<div id="welcomeScreen" class="center">
+ <h1>Yayyyy! u got it..Welcome daddaa❤️</h1>
+</div>
+
+<!-- VALENTINE QUESTION -->
+<div id="valentineQuestion" class="center">
+ <h1>Dear Pranay ❤️</h1>
+ <h2>Will you be my Valentine? 💌</h2>
+
+ <div class="btnColumn">
+   <button id="yesBtn">Yes 💕</button>
+   <button id="noBtn">No 😢</button>
+ </div>
+
+ <p id="cuteMsg"></p>
+</div>
+
+<!-- START WEEK -->
+<div id="mainContent" class="center">
+ <h1>7 Days. 7 Reasons. One Love.</h1>
+ <button onclick="location.href='rose.html'">Start Valentine Week 🌹</button>
+</div>
+
+<script>
+
+/* PREMIUM EMOJI ANIMATION */
+let emojis = ["🌹","💍","🍫","🧸","🤝","💋","❤️"];
+
+function createEmoji(){
+  let emoji = document.createElement("div");
+  emoji.className = "floatingEmoji";
+  emoji.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+
+  emoji.style.left = Math.random()*100 + "vw";
+  emoji.style.top = Math.random()*100 + "vh";
+  emoji.style.fontSize = (22 + Math.random()*35) + "px";
+  emoji.style.animationDuration = (4 + Math.random()*4) + "s";
+
+  document.body.appendChild(emoji);
+  setTimeout(()=>emoji.remove(),8000);
+}
+setInterval(createEmoji, 250);
+
+
+/* typing animation */
+const text="Enter our secret code 💌";
+let index=0;
+function typeText(){
+ if(index<text.length){
+   document.getElementById("typingText").innerHTML+=text.charAt(index);
+   index++;
+   setTimeout(typeText,60);
+ }
+}
+typeText();
+
+
+/* PASSWORD FLOW */
+const passwordModal=document.getElementById('passwordModal');
+const welcomeScreen=document.getElementById('welcomeScreen');
+const valentineQuestion=document.getElementById('valentineQuestion');
+const mainContent=document.getElementById('mainContent');
+const passwordInput=document.getElementById('passwordInput');
+const submitPassword=document.getElementById('submitPassword');
+
+submitPassword.addEventListener('click',function(){
+
+ if(passwordInput.value.toLowerCase()==='neeharikapranay'){
+
+   passwordModal.style.display='none';
+   welcomeScreen.style.display='flex';
+
+   setTimeout(()=>{
+     welcomeScreen.style.display='none';
+     valentineQuestion.style.display='flex';
+   },2000);
+
+ }else{
+
+   passwordInput.classList.add("shake");
+
+   setTimeout(()=>{
+     passwordInput.classList.remove("shake");
+   },400);
+
+   passwordInput.value='';
+   passwordInput.placeholder='Try again, my love...';
+ }
+});
+
+
+/* ENTER KEY SUPPORT */
+passwordInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        submitPassword.click();
+    }
+});
+
+
+/* YES CLICK */
+document.getElementById("yesBtn").onclick=function(){
+ valentineQuestion.style.display='none';
+ mainContent.style.display='flex';
+}
+
+
+/* NO CLICK → YES GROWS */
+let yesScale = 1;
+
+let messages = [
+    "Are you sure babe? 🥺",
+    "Think again wisely💭 I'm watching you👀",
+    "how dare youuuu😤 Please say yes nannaa💖",
+    "You’re my favorite human🥰🧸",
+    "I love you sooo much❤️",
+    "You can't escape my love for this life😉"
+];
+
+let indexMsg = 0;
+
+document.getElementById("noBtn").onclick = function(){
+
+ yesScale += 0.52;
+
+ document.getElementById("yesBtn").style.transform =
+   "scale(" + yesScale + ")";
+
+ document.getElementById("cuteMsg").innerText = messages[indexMsg];
+ if(indexMsg < messages.length-1) indexMsg++;
+}
+
+</script>
+
+</body>
+</html>

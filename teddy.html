@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teddy Day 🧸</title>
+
+<style>
+body{
+ margin:0;
+ font-family:'Segoe UI';
+ text-align:center;
+ color:#8b0000;
+
+ background-image:url("teddy_bg.jpg");
+ background-size:cover;
+ background-position:center;
+ background-repeat:no-repeat;
+}
+
+/* overlay */
+.overlay{
+ background:rgba(255,255,255,0.75);
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ padding:20px;
+}
+
+/* title */
+.title{
+ font-family:'Brush Script MT',cursive;
+ font-size:55px;
+ color:#b3003c;
+ margin-bottom:5px;
+}
+
+/* quote */
+.quote{
+ font-family:'Segoe Script','Brush Script MT',cursive;
+ font-size:24px;
+ color:#b3003c;
+ line-height:1.7;
+ max-width:650px;
+}
+
+/* fade animation */
+.fadeText{
+ animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+ from{opacity:0; transform:translateY(25px);}
+ to{opacity:1; transform:translateY(0);}
+}
+
+/* button */
+button{
+ padding:12px 25px;
+ background:#ff4d6d;
+ color:white;
+ border:none;
+ border-radius:25px;
+ font-size:18px;
+ cursor:pointer;
+ margin-top:25px;
+ transition:0.3s;
+}
+
+button:hover{
+ transform:scale(1.05);
+}
+
+h2{margin-top:0;}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1 class="title">Teddy Day 🧸</h1>
+<h2>For Pranay ❤️</h2>
+
+<p class="quote fadeText">
+The way you care for me… no one can ever match that warmth 🧸❤️
+</p>
+
+<button onclick="location.href='promise.html'">Next day 🫶🏻</button>
+
+</div>
+
+</body>
+</html>
